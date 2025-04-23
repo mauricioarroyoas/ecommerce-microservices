@@ -1,7 +1,19 @@
 import express from 'express';
+import { AppDataSource } from './ormconfig';
+import { User } from './User';
 
 const app = express();
 const port = process.env.PORT || 3000;
+
+app.use(express.json());
+
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Data Source has been initialized!');
+  })
+  .catch((err) => {
+    console.error('Error during Data Source initialization', err);
+  });
 
 app.get('/', (req, res) => {
   res.send('User Service is up and running!');
