@@ -1,6 +1,6 @@
 import express from 'express';
 import { AppDataSource } from './ormconfig';
-import { User } from './User';
+import 'reflect-metadata';
 
 const app = express();
 const port = process.env.PORT || 3000;
