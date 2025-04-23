@@ -1,13 +1,10 @@
 import express from 'express';
-import { AppDataSource } from './ormconfig';
-import 'reflect-metadata';
 import 'dotenv/config';
-
+import { AppDataSource } from './ormconfig';
+import { createUser } from './user.controller';
 
 const app = express();
-const port = process.env.PORT || 3000;
-
-app.use(express.json());
+app.use(express.json()); // ✅ important for reading JSON bodies
 
 AppDataSource.initialize()
   .then(() => {
@@ -17,10 +14,8 @@ AppDataSource.initialize()
     console.error('Error during Data Source initialization', err);
   });
 
-app.get('/', (req, res) => {
-  res.send('User Service is up and running!');
-});
+app.post('/users', createUser);
 
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+app.listen(3000, () => {
+  console.log('Server is running on port 3000');
 });

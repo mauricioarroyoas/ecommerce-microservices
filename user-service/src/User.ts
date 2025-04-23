@@ -10,7 +10,4 @@ export class User {
 
   @Column()
   email!: string;
-
-  @Column()
-  password!: string; // Remember to hash passwords in real apps!
 }
