@@ -11,4 +11,9 @@ RUN npm run build
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+#for debugger
+EXPOSE 9229
+
+
+# Run the app (use `npm run dev` for development, `start` for prod)
+CMD ["npm", "run", "dev"]
