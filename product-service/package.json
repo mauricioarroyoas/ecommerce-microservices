@@ -1,28 +1,26 @@
 {
-  "name": "user-service",
+  "name": "product-service",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "node --inspect=0.0.0.0:9229 -r ts-node/register src/index.ts"
+    "dev": "node --inspect=0.0.0.0:9230 -r ts-node/register src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "dotenv": "^16.5.0",
     "express": "^5.1.0",
-    "pg": "^8.15.1",
+    "pg": "^8.15.5",
     "reflect-metadata": "^0.2.2",
-    "typeorm": "^0.3.22"
+    "ts-node": "^10.9.2",
+    "typeorm": "^0.3.22",
+    "typescript": "^5.8.3"
   },
   "devDependencies": {
-    "@types/express": "^5.0.1",
-    "@types/node": "^22.14.1",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.8.3"
+    "@types/express": "^5.0.1"
   }
 }

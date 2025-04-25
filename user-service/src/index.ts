@@ -1,7 +1,7 @@
 import express from 'express';
 import 'dotenv/config';
 import { AppDataSource } from './ormconfig';
-import { createUser } from './user.controller';
+import { createUser, getAllUsers } from './user.controller';
 
 const app = express();
 app.use(express.json()); // ✅ important for reading JSON bodies
@@ -15,7 +15,9 @@ AppDataSource.initialize()
   });
 
 app.post('/users', createUser);
+app.get('/users', getAllUsers);
 
-app.listen(3000, () => {
-  console.log('Server is running on port 3000');
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
 });

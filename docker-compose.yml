@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  postgres:
+  postgres-user:
     image: postgres:15
     container_name: user_service_postgres
     restart: always
@@ -12,20 +12,49 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - postgres_user_data:/var/lib/postgresql/data
+
+  postgres-product:
+    image: postgres:15
+    container_name: product_service_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: product_service_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - postgres_product_data:/var/lib/postgresql/data
 
   user-service:
     build: ./user-service
     depends_on:
-      - postgres
+      - postgres-user
     ports:
       - "3000:3000"
+      - "9229:9229"
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: user_service_db
-      POSTGRES_HOST: postgres
+      POSTGRES_HOST: postgres-user
+      POSTGRES_PORT: 5432
+
+  product-service:
+    build: ./product-service
+    depends_on:
+      - postgres-product
+    ports:
+      - "3001:3000"
+      - "9230:9230"  # expose debug port to host
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: product_service_db
+      POSTGRES_HOST: postgres-product
       POSTGRES_PORT: 5432
 
 volumes:
-  postgres_data:
+  postgres_user_data:
+  postgres_product_data:

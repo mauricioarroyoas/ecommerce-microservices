@@ -1,0 +1,32 @@
+##### LAUNCHJSON FILE FOR DEBUGGER FROM ROOT, FRMO ECOMMERCE-MICRSOSERVICES
+no need to add launch.json and debuggin frmo another vscode window
+
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Attach to Docker: Product Service",
+      "type": "node",
+      "request": "attach",
+      "port": 9230,
+      "address": "localhost",
+      "restart": true,
+      "localRoot": "${workspaceFolder}/product-service",
+      "remoteRoot": "/usr/src/app",
+      "protocol": "inspector",
+      "skipFiles": ["<node_internals>/**"]
+    },
+    {
+      "name": "Attach to Docker: User Service",
+      "type": "node",
+      "request": "attach",
+      "port": 9229,
+      "address": "localhost",
+      "restart": true,
+      "localRoot": "${workspaceFolder}/user-service",
+      "remoteRoot": "/usr/src/app",
+      "protocol": "inspector",
+      "skipFiles": ["<node_internals>/**"]
+    }
+  ]
+}
