@@ -30,3 +30,14 @@ export const getAllUsers = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Error fetching products", error });
   }
 };
+
+export const getUser = async (req: Request, res: Response) => {
+  try {
+    const userId =  Number.parseInt(req.params.id); 
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOneBy({ id: userId }); // 👈 this is the key line
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: "Error fetching products", error });
+  }
+};

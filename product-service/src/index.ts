@@ -5,12 +5,14 @@ import { craeteProduct, getAllProducts } from "./product.controller";
 const app = express();
 app.use(express.json());
 
-// const productController = new ProductController();
-// app.get("/products", productController.getAllProducts);
-// app.get("/products/:id", productController.getProductById);
-// app.post("/products", productController.createProduct);
-// app.put("/products/:id", productController.updateProduct);
-// app.delete("/products/:id", productController.deleteProduct);
+AppDataSource.initialize()
+  .then(() => {
+    console.log('Data Source has been initialized!');
+  })
+  .catch((err) => {
+    console.error('Error during Data Source initialization', err);
+  });
+
 
 app.post("/products", craeteProduct);
 app.get("/products", getAllProducts);
