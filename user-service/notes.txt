@@ -1,3 +1,5 @@
+docker compose per service, so it can debugged with vscode
+
 version: "3.8"
 
 services:
