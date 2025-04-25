@@ -1,10 +1,10 @@
 import express from 'express';
 import 'dotenv/config';
 import { AppDataSource } from './ormconfig';
-import { createUser, getAllUsers } from './user.controller';
+import { createUser, getAllUsers, getUser } from './user.controller';
 
 const app = express();
-app.use(express.json()); // ✅ important for reading JSON bodies
+app.use(express.json()); 
 
 AppDataSource.initialize()
   .then(() => {
@@ -16,6 +16,8 @@ AppDataSource.initialize()
 
 app.post('/users', createUser);
 app.get('/users', getAllUsers);
+app.get('/users/:id', getUser);
+
 
 const PORT = 3000;
 app.listen(PORT, () => {

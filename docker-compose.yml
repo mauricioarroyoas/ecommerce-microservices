@@ -1,4 +1,4 @@
-version: '3.8'
+version: "3.8"
 
 services:
   postgres-user:
@@ -13,6 +13,8 @@ services:
       - "5432:5432"
     volumes:
       - postgres_user_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-net
 
   postgres-product:
     image: postgres:15
@@ -26,6 +28,8 @@ services:
       - "5433:5432"
     volumes:
       - postgres_product_data:/var/lib/postgresql/data
+    networks:
+      - ecommerce-net
 
   user-service:
     build: ./user-service
@@ -40,6 +44,8 @@ services:
       POSTGRES_DB: user_service_db
       POSTGRES_HOST: postgres-user
       POSTGRES_PORT: 5432
+    networks:
+      - ecommerce-net
 
   product-service:
     build: ./product-service
@@ -47,14 +53,20 @@ services:
       - postgres-product
     ports:
       - "3001:3000"
-      - "9230:9230"  # expose debug port to host
+      - "9230:9230" # expose debug port to host
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
       POSTGRES_DB: product_service_db
       POSTGRES_HOST: postgres-product
       POSTGRES_PORT: 5432
+    networks:
+      - ecommerce-net
+
 
 volumes:
   postgres_user_data:
   postgres_product_data:
+
+networks:
+  ecommerce-net: {}
