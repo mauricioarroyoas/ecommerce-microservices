@@ -1,7 +1,7 @@
 import express from "express";
-import { AppDataSource } from "./ormconfig";
-import { craeteProduct, getAllProducts } from "./product.controller";
-import { getRatings, postRating } from "./rating.controller";
+import { AppDataSource } from "./config/ormconfig";
+import { craeteProduct, getAllProducts } from "./controllers/product.controller";
+import { getRatings, postRating } from "./controllers/rating.controller";
 import seed from "./seeders/seed";
 
 const app = express();

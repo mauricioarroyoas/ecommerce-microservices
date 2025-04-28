@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import Rating from "./Rating";
-import { AppDataSource } from "./ormconfig";
-import { getUser, getUsers } from "./services/userService";
+import Rating from "../entities/Rating";
+import { AppDataSource } from "../config/ormconfig";
+import { getUser, getUsers } from "../services/userService";
 
 export const postRating = async (req: Request, res: Response) => {
   try {

@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
-import { AppDataSource } from "./ormconfig";
-import Product from "./Product";
-import { getUser } from "./services/userService";
+import { AppDataSource } from "../config/ormconfig";
+import Product from "../entities/Product";
+import { getUser } from "../services/userService";
 
 export const craeteProduct = async (req: Request, res: Response) => {
   const { name, description, price, userId } = req.body;
