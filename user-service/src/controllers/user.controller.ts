@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { AppDataSource } from "./ormconfig";
-import User from "./User";
+import { AppDataSource } from "../config/ormconfig";
+import User from "../entities/User";
 
 export const createUser = async (req: Request, res: Response) => {
   const { name, email } = req.body;

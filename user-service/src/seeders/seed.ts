@@ -1,5 +1,5 @@
-import User from "../User";
-import { AppDataSource } from "../ormconfig";
+import User from "../entities/User";
+import { AppDataSource } from "../config/ormconfig";
 
 export default async function seed() {
   const userRepository = AppDataSource.getRepository(User);
