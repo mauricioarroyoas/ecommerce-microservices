@@ -1,5 +1,6 @@
 import { DataSource } from 'typeorm';
-import { Product } from './Product';
+import Product  from './Product';
+import Rating from "./Rating";
 import 'dotenv/config';
 
 export const AppDataSource = new DataSource({
@@ -10,6 +11,7 @@ export const AppDataSource = new DataSource({
   password: process.env.POSTGRES_PASSWORD,
   database: process.env.POSTGRES_DB,
   synchronize: true,
+  dropSchema: true,
   logging: false,
-  entities: [Product],
+  entities: [Product, Rating],
 });
