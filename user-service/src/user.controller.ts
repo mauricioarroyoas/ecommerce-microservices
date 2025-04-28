@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "./ormconfig";
-import { User } from "./User";
+import User from "./User";
 
 export const createUser = async (req: Request, res: Response) => {
   const { name, email } = req.body;
@@ -33,7 +33,7 @@ export const getAllUsers = async (req: Request, res: Response) => {
 
 export const getUser = async (req: Request, res: Response) => {
   try {
-    const userId =  Number.parseInt(req.params.id); 
+    const userId = Number.parseInt(req.params.id);
     const userRepository = AppDataSource.getRepository(User);
     const user = await userRepository.findOneBy({ id: userId }); // 👈 this is the key line
     res.json(user);

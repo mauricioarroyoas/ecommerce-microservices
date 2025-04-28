@@ -1,22 +1,25 @@
 import express from "express";
 import { AppDataSource } from "./ormconfig";
 import { craeteProduct, getAllProducts } from "./product.controller";
+import { getRatings, postRating } from "./rating.controller";
+import seed from "./seeders/seed";
 
 const app = express();
 app.use(express.json());
+app.post("/products", craeteProduct);
+app.get("/products", getAllProducts);
+app.post("/ratings", postRating);
+app.get("/ratings", getRatings);
 
 AppDataSource.initialize()
-  .then(() => {
+  .then(async () => {
     console.log('Data Source has been initialized!');
+    await seed();
   })
   .catch((err) => {
     console.error('Error during Data Source initialization', err);
   });
-
-
-app.post("/products", craeteProduct);
-app.get("/products", getAllProducts);
-
+  
 const PORT = 3000;
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
