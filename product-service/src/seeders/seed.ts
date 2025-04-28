@@ -1,6 +1,6 @@
-import { AppDataSource } from "../ormconfig";
-import Product from "../Product";
-import Rating from "../Rating";
+import { AppDataSource } from "../config/ormconfig";
+import Product from "../entities/Product";
+import Rating from "../entities/Rating";
 
 export default async function seed() {
 

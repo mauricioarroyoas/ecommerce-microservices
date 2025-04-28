@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
-import Product  from './Product';
-import Rating from "./Rating";
+import Product  from '../entities/Product';
+import Rating from "../entities/Rating";
 import 'dotenv/config';
 
 export const AppDataSource = new DataSource({
