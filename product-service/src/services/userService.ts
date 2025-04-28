@@ -1,16 +1,14 @@
 import axios from "axios";
 
-// Base URL of the user service (Docker container name + port)
 const userServiceUrl = "http://user-service:3000/users";
 
 interface User {
-  id: string;
+  id: number;
   name: string;
   email: string;
 }
 
-// Function to fetch a user by ID
-export async function getUserById(userId: string): Promise<User> {
+export async function getUser(userId: string): Promise<User> {
   try {
     const response = await axios.get<User>(`${userServiceUrl}/${userId}`);
     const user: User = {
@@ -28,5 +26,15 @@ export async function getUserById(userId: string): Promise<User> {
       );
     }
     throw error; // Re-throw the error
+  }
+}
+
+
+export async function getUsers(): Promise<User[]> {
+  try {
+    const response = await axios.get<User[]>(`${userServiceUrl}`);
+    return response.data;
+  } catch (error) {
+    throw error;    
   }
 }

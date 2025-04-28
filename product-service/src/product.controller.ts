@@ -1,12 +1,12 @@
 import { Request, Response } from "express";
 import { AppDataSource } from "./ormconfig";
 import Product from "./Product";
-import { getUserById } from "./services/userService";
+import { getUser } from "./services/userService";
 
 export const craeteProduct = async (req: Request, res: Response) => {
   const { name, description, price, userId } = req.body;
   try {
-    const user = await getUserById(userId);
+    const user = await getUser(userId);
 
     const productRepository = AppDataSource.getRepository(Product);
     const product = new Product();
