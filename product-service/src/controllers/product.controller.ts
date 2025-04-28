@@ -3,7 +3,7 @@ import { AppDataSource } from "../config/ormconfig";
 import Product from "../entities/Product";
 import { getUser } from "../services/userService";
 
-export const craeteProduct = async (req: Request, res: Response) => {
+export const createProduct = async (req: Request, res: Response) => {
   const { name, description, price, userId } = req.body;
   try {
     const user = await getUser(userId);
