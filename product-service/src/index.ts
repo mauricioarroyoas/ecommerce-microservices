@@ -1,12 +1,12 @@
 import express from "express";
 import { AppDataSource } from "./config/ormconfig";
-import { craeteProduct, getAllProducts } from "./controllers/product.controller";
+import { createProduct, getAllProducts } from "./controllers/product.controller";
 import { getRatings, postRating } from "./controllers/rating.controller";
 import seed from "./seeders/seed";
 
 const app = express();
 app.use(express.json());
-app.post("/products", craeteProduct);
+app.post("/products", createProduct);
 app.get("/products", getAllProducts);
 app.post("/ratings", postRating);
 app.get("/ratings", getRatings);
