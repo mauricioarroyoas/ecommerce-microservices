@@ -27,7 +27,7 @@ export const getRatings = async (req: Request, res: Response) => {
   const ratingRepository = AppDataSource.getRepository(Rating);
   const ratings = await ratingRepository.find();
   const users = await getUsers();
-  
+
   const ratingsResponse = ratings.map((rating) => {
     const user = users.find((u) => u.id === rating.userId);
     return new RatingDTO(rating.id, rating.stars, rating.productId, user);
@@ -43,3 +43,5 @@ class RatingDTO {
     public readonly user: any
   ) {}
 }
+
+
