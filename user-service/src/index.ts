@@ -1,7 +1,7 @@
 import express from "express";
 import "dotenv/config";
-import { AppDataSource } from "./ormconfig";
-import { createUser, getAllUsers, getUser } from "./user.controller";
+import { AppDataSource } from "./config/ormconfig";
+import { createUser, getAllUsers, getUser } from "./controllers/user.controller";
 import seed from "./seeders/seed";
 
 const app = express();
